@@ -1,0 +1,15 @@
+# llm
+anthropic
+numpy
+opencv-python
+python-dotenv
+pynput
+
+# stt
+realtimestt
+
+# server
+flask
+
+# manual control app
+PyQt5
