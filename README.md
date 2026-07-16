@@ -1,73 +1,75 @@
-<p align="left">
-  <img src="https://img.shields.io/badge/Winner-MIT%20Hard%20Mode%202026-gold?style=for-the-badge&logo=mit&logoColor=white" alt="MIT Winner Badge">
-  <img src="https://img.shields.io/badge/Watch-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Video">
-</p>
 <p align="center">
-  <img width="1200" height="628" alt="Human Operator" src="https://github.com/user-attachments/assets/581d8f0a-ff4f-443f-bf0b-99a2538cd598" />
+  <img src="https://img.shields.io/badge/Proyecto%20estudiantil-Colegio%20Domingo%20Savio-1E88E5?style=for-the-badge" alt="Proyecto estudiantil del Colegio Domingo Savio">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10 o superior">
+  <img src="https://img.shields.io/badge/Hardware-Arduino-00878F?style=for-the-badge&logo=arduino&logoColor=white" alt="Arduino">
 </p>
 
-# Human Operator
+# SINACEM
 
-Human Operator is a wearable human-augmentation system that maps voice + first-person vision input to relay-routed Electrical Muscle Stimulation (EMS) actions.
+SINACEM es un proyecto educativo de interacción humano-computadora desarrollado por estudiantes del **Colegio Domingo Savio**. El sistema combina comandos de voz, visión en primera persona, inteligencia artificial y estimulación muscular eléctrica (EMS) para generar y ejecutar acciones controladas mediante relés.
 
-This project won MIT Hard Mode 2026 (Learn Track).
+El objetivo del proyecto es explorar, con fines académicos, cómo la inteligencia artificial puede interpretar el entorno y convertir instrucciones humanas en una secuencia de acciones físicas sobre un prototipo experimental.
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/2b088e69-b861-4d76-951c-7a69cf5c6d5c" width="32%" alt="AI makes hand wave" />
-  <img src="https://github.com/user-attachments/assets/366eef6b-59c4-4773-bbd3-4310cee81fad" width="32%" alt="AI makes hand play piano" />
-  <img src="https://github.com/user-attachments/assets/483c7c5d-858b-47a7-a765-e2fee5f27b1a" width="32%" alt="AI makes hand do OK sign"/>
-  <p><sub>Left to right: AI stimulates wrist muscle to wave • AI stimulates fingers in sequence to play melody • AI stimulates fingers to form an OK sign</sub></p>
-</div>
+> [!WARNING]
+> SINACEM es un prototipo educativo y experimental. No es un dispositivo médico ni debe utilizarse sin supervisión responsable.
 
-[Watch Full Video Demo](https://youtu.be/fCLxENGs7CY?si=noS9cT161CwEFh5Q)
+## Contenido del repositorio
 
-## What This Repository Contains
+- `app.py`: ciclo principal del sistema: cámara, voz, modelo de IA y envío de comandos.
+- `utils/receiver.py`: servidor Flask que recibe y ejecuta secuencias temporizadas de relés y EMS.
+- `manual_control_app.py`: interfaz gráfica para calibración y pruebas manuales.
+- `firmware/`: firmware del controlador Arduino compatible.
+- `run_hardware.sh`: inicio automatizado del sistema en modo de hardware con relés.
+- `design/`: archivos de diseño e impresión 3D del prototipo.
 
-- `app.py`: Main runtime loop (camera + voice trigger + LLM + command dispatch)
-- `utils/receiver.py`: Flask hardware gateway for timed relay/EMS command execution
-- `manual_control_app.py`: PyQt GUI for manual calibration and direct stimulation testing
-- `firmware/human_operator_ems/human_operator_ems.ino`: Arduino relay controller firmware
-- `run_hardware.sh`: Recommended one-command launcher for real relay hardware mode
+## ¿Cómo funciona?
 
-## Team
-- Peter He - [Portfolio](https://peterhe.dev) | [GitHub](https://github.com/molegod) | [LinkedIn](https://www.linkedin.com/in/ph475/)
-- Valdemar Danry - [Portfolio](https://valdemardanry.com) | [GitHub](https://github.com/valleballe) | [LinkedIn](https://www.linkedin.com/in/valdemar-danry)
-- Daniel Kaijzer - [GitHub](https://github.com/danielkaijzer) | [LinkedIn](https://www.linkedin.com/in/danielkaijzer/)
-- Yutong Wu - [GitHub](https://github.com/ichbinHallie0426) | [LinkedIn](https://www.linkedin.com/in/yutong-wu-4b66661b5/)
-- Sean Lewis - [Portfolio](https://seanhardestylewis.com/) | [GitHub](https://github.com/seanhlewis) | [LinkedIn](https://www.linkedin.com/in/seanhardestylewis/)
-- Ashley Neall - [Portfolio](https://aneall.github.io/) | [GitHub](https://github.com/aneall) | [LinkedIn](https://www.linkedin.com/in/ashley-neall/)
+1. El sistema espera una instrucción de voz.
+2. La cámara captura una imagen del entorno.
+3. El modelo de inteligencia artificial analiza la instrucción y la imagen.
+4. La respuesta se convierte en una secuencia de acciones con tiempos definidos.
+5. El servidor local envía las órdenes al Arduino y al sistema de relés.
+6. Los relés seleccionan la salida correspondiente para ejecutar la acción configurada.
 
-## Safety and Responsibility
+## Seguridad y responsabilidad
 
-This repository controls physical electrical stimulation hardware.
+Este repositorio controla hardware de estimulación muscular eléctrica. Su uso incorrecto puede causar lesiones.
 
-- Use only with appropriate supervision and informed consent.
-- Keep stimulation intensities conservative during calibration.
-- Ensure emergency stop access (software stop and physical disconnect).
-- Do not use on people with contraindications to EMS.
+- Utilizar únicamente con supervisión de una persona responsable y capacitada.
+- Obtener consentimiento informado antes de cualquier prueba con una persona.
+- Empezar siempre con intensidades conservadoras durante la calibración.
+- Mantener accesible un mecanismo de parada de emergencia y una desconexión física.
+- No colocar electrodos en la cabeza, el cuello, el pecho ni otras zonas sensibles.
+- No utilizar el sistema en personas con marcapasos, implantes electrónicos o contraindicaciones médicas para EMS.
+- Detener inmediatamente la prueba ante dolor, mareo, entumecimiento o una reacción inesperada.
 
-## Prerequisites
+## Requisitos
 
-- Python 3.10+
-- macOS/Linux shell environment
-- Arduino IDE (for flashing firmware)
-- Anthropic API key (`ANTHROPIC_API_KEY`)
-- Hardware:
-  - Relay MCU (Arduino-compatible)
-  - Relay board
-  - EMS/stimulator device (optional in relay-only mode)
-  - Camera for first-person capture
+### Software
 
-## Quick Start (Recommended)
+- Python 3.10 o superior.
+- macOS o Linux.
+- Arduino IDE.
+- Una clave de Anthropic configurada como `ANTHROPIC_API_KEY`.
 
-1. Clone and enter the project:
+### Hardware
+
+- Una placa compatible con Arduino.
+- Un módulo de relés.
+- Un dispositivo de estimulación EMS compatible.
+- Una cámara.
+- Electrodos y conexiones apropiadas para el prototipo.
+
+## Instalación rápida
+
+### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/danielkaijzer/Human-Operator.git
-cd Human-Operator
+git clone https://github.com/benjitaregue-afk/SINACEM.git
+cd SINACEM
 ```
 
-2. Create and activate a local virtual environment:
+### 2. Crear el entorno virtual e instalar dependencias
 
 ```bash
 python3 -m venv .venv
@@ -76,217 +78,244 @@ pip install -r requirements.txt
 pip install pyserial requests
 ```
 
-3. Configure environment variables (LLM key):
+### 3. Configurar la clave de la IA
 
 ```bash
 cp .env_empty .env
-# then edit .env and set:
-# ANTHROPIC_API_KEY=your_key_here
 ```
 
-4. Flash relay firmware to your Arduino-compatible board:
+Después, editar `.env` y agregar:
 
-- Open `firmware/human_operator_ems/human_operator_ems.ino`
-- Select correct board/port in Arduino IDE
-- Upload at 115200 baud serial settings
+```env
+ANTHROPIC_API_KEY=tu_clave_aqui
+```
 
-5. Run full stack in relay-only hardware mode:
+> Nunca publiques tu clave real en GitHub.
+
+### 4. Cargar el firmware
+
+1. Abrir en Arduino IDE el archivo `.ino` ubicado dentro de `firmware/`.
+2. Seleccionar la placa y el puerto correctos.
+3. Cargar el programa con una velocidad serial de `115200` baudios.
+
+### 5. Ejecutar el sistema
 
 ```bash
 ./run_hardware.sh
 ```
 
-Optional custom relay port:
+Para indicar manualmente el puerto del relé:
 
 ```bash
-RELAY_PORT=/dev/cu.wchusbserial10 ./run_hardware.sh
+RELAY_PORT=/dev/cu.usbserial-210 ./run_hardware.sh
 ```
 
-What `run_hardware.sh` does:
+El script realiza las siguientes tareas:
 
-- Starts `utils/receiver.py` in `HARDWARE_MODE=relay`
-- Waits for `/health`
-- Verifies `relay_hardware_connected=true`
-- Launches `app.py` with `RECEIVER_URL` set
-- Cleans up background receiver process on exit
+- Inicia `utils/receiver.py` en modo relé.
+- Espera la respuesta del endpoint `/health`.
+- Verifica que el hardware esté conectado.
+- Inicia `app.py` con la dirección del receptor configurada.
+- Cierra los procesos auxiliares al finalizar.
 
-## Running Modes
+## Modos de ejecución
 
-### Mode A: Relay-Only (Default and Most Stable)
+### Modo A: solo relés
 
-Use this for reliable relay switching and wiring validation:
+Este es el modo recomendado para verificar el cableado y el funcionamiento de las salidas:
 
 ```bash
 HARDWARE_MODE=relay RELAY_PORT=/dev/cu.usbserial-210 python utils/receiver.py
 ```
 
-Check health from another terminal:
+En otra terminal se puede comprobar el estado:
 
 ```bash
 curl -sS http://127.0.0.1:5001/health
 ```
 
-Expected key fields:
+La respuesta debería incluir:
 
-- `"hardware_mode": "relay"`
-- `"relay_hardware_connected": true`
-
-### Mode B: Full Mode (Relay + Stim)
-
-Enable full stim path explicitly:
-
-```bash
-HARDWARE_MODE=full STIM_PORT=/dev/cu.usbserial-XXX RELAY_PORT=/dev/cu.usbserial-YYY python utils/receiver.py
+```json
+{
+  "hardware_mode": "relay",
+  "relay_hardware_connected": true
+}
 ```
 
-Notes:
+### Modo B: relés y estimulación
 
-- Stim is intentionally disabled unless full mode is explicitly enabled.
-- If a device shows as `SIMULATED`, that serial port failed to open.
+Este modo habilita explícitamente la ruta completa del estimulador:
 
-## Main App Runtime
+```bash
+HARDWARE_MODE=full \
+STIM_PORT=/dev/cu.usbserial-XXX \
+RELAY_PORT=/dev/cu.usbserial-YYY \
+python utils/receiver.py
+```
 
-Start the app (if not using `run_hardware.sh`):
+La estimulación permanece deshabilitada si no se selecciona explícitamente el modo `full`. Si un dispositivo aparece como `SIMULATED`, significa que no fue posible abrir su puerto serial.
+
+## Aplicación principal
+
+Si no se utiliza `run_hardware.sh`, la aplicación puede iniciarse manualmente:
 
 ```bash
 python app.py
 ```
 
-Runtime flow:
+Flujo de ejecución:
 
-1. Wait for voice command trigger.
-2. Capture latest camera frame.
-3. Send prompt + image to Claude.
-4. Transform action plan into timestamped relay/EMS payload.
-5. POST payload to `utils/receiver.py` at `RECEIVER_URL`.
+1. Esperar el comando de voz.
+2. Capturar la imagen más reciente de la cámara.
+3. Enviar la instrucción y la imagen al modelo de IA.
+4. Convertir el plan generado en comandos temporizados para relés y EMS.
+5. Enviar la secuencia a `utils/receiver.py` mediante una solicitud `POST`.
 
-## Manual Calibration GUI
+## Calibración manual
 
-Run:
+Para abrir la interfaz de control manual:
 
 ```bash
 python manual_control_app.py
 ```
 
-Use it to:
+La interfaz permite:
 
-- Connect EMS and relay serial ports manually
-- Select relay targets (`wrist_left`, `wrist_right`, `thumb`, `index`, `middle`, `ring`, `pinky`, `x`)
-- Tune amplitude/frequency/pulse width
-- Validate response before autonomous runtime
+- Conectar manualmente los puertos seriales.
+- Seleccionar la salida correspondiente a cada dedo o muñeca.
+- Ajustar amplitud, frecuencia, ancho de pulso y duración.
+- Verificar cada respuesta antes de utilizar el flujo automatizado.
 
-## Relay Targets and Firmware Mapping
+## Salidas disponibles
 
-Relay selector commands accepted by receiver/firmware:
+El receptor y el firmware aceptan los siguientes objetivos:
 
-- `wrist_left`
-- `wrist_right`
-- `thumb`
-- `index`
-- `middle`
-- `ring`
-- `pinky`
-- `x` (all off / isolate)
+- `wrist_left`: muñeca izquierda.
+- `wrist_right`: muñeca derecha.
+- `thumb`: pulgar.
+- `index`: índice.
+- `middle`: dedo medio.
+- `ring`: anular.
+- `pinky`: meñique.
+- `x`: apagar o aislar todas las salidas.
 
-Firmware pin mapping in `firmware/human_operator_ems/human_operator_ems.ino`:
+Mapeo de pines configurado en el firmware:
 
-- D2 -> `wrist_left`
-- D4 -> `wrist_right`
-- D3 -> `thumb`
-- D5 -> `index`
-- D6 -> `middle`
-- D7 -> `ring`
-- D8 -> `pinky`
+| Pin | Salida |
+| --- | --- |
+| D2 | `wrist_left` |
+| D4 | `wrist_right` |
+| D3 | `thumb` |
+| D5 | `index` |
+| D6 | `middle` |
+| D7 | `ring` |
+| D8 | `pinky` |
 
-Firmware serial debug commands:
+Comandos de diagnóstico disponibles por puerto serial:
 
-- `test` to sweep all outputs
-- `mode_low` for active-low relay boards
-- `mode_high` for active-high relay boards
-- `x` to set all outputs off
+- `test`: prueba todas las salidas en secuencia.
+- `mode_low`: configura relés activos en nivel bajo.
+- `mode_high`: configura relés activos en nivel alto.
+- `x`: apaga todas las salidas.
 
-## API Contract (`utils/receiver.py`)
+## API local
 
 ### `GET /health`
 
-Returns receiver status and hardware connection details.
+Devuelve el estado del servidor y de las conexiones de hardware.
 
 ### `POST /execute`
 
-Accepts timestamp-keyed command dictionaries. Example:
+Recibe un objeto JSON con comandos organizados por tiempo. Ejemplo:
 
 ```json
 {
   "0.0": [
-    {"type": "RELAY", "finger": "index"},
-    {"type": "EMS", "channel": 1, "amplitude": 60, "duration": 1.0, "frequency": 100, "pulse_width": 1000}
+    {
+      "type": "RELAY",
+      "finger": "index"
+    },
+    {
+      "type": "EMS",
+      "channel": 1,
+      "amplitude": 60,
+      "duration": 1.0,
+      "frequency": 100,
+      "pulse_width": 1000
+    }
   ],
   "1.5": [
-    {"type": "RELAY", "finger": "x"}
+    {
+      "type": "RELAY",
+      "finger": "x"
+    }
   ]
 }
 ```
 
-## Additional Demo
+## Solución de problemas
 
-Ball-triggered avoidance demo:
+### El relé aparece como simulado
 
-```bash
-python utils/ball_demo.py
-```
+- Cerrar el monitor serial de Arduino y cualquier programa que esté utilizando el puerto.
+- Verificar el valor de `RELAY_PORT`.
+- Confirmar que la placa tenga alimentación y que el cable de datos funcione.
+- Volver a iniciar el receptor en modo relé.
 
-## Troubleshooting
+### El servidor inicia, pero no se escucha el relé
 
-### Receiver says relay is simulated
+- Ejecutar el comando serial `test`.
+- Probar `mode_low` y `mode_high`.
+- Verificar la alimentación, la tierra común y las conexiones de entrada.
+- Comparar el cableado con el mapeo de pines del firmware.
 
-- Symptom: `"relay": "SIMULATED"` in `/execute` response or `/health`
-- Cause: relay serial port failed to open (busy/wrong port/power issue)
-- Fixes:
-  - Close Arduino Serial Monitor and any other serial tool
-  - Verify correct `RELAY_PORT`
-  - Re-run in explicit relay mode:
-    - `HARDWARE_MODE=relay RELAY_PORT=/dev/cu.usbserial-210 python utils/receiver.py`
+### La cámara no se abre
 
-### Receiver starts but no physical relay click
+- Revisar los permisos de cámara del sistema operativo.
+- Cerrar otras aplicaciones que puedan estar utilizando la cámara.
 
-- Run firmware `test` command over serial
-- Try `mode_low` and `mode_high`
-- Verify relay board power and common ground
-- Verify IN pin wiring vs firmware pin map
+### Error de clave o conexión con la IA
 
-### Camera cannot be opened
+- Verificar que `.env` exista y contenga `ANTHROPIC_API_KEY`.
+- Confirmar que la clave sea válida y que exista conexión a internet.
 
-- Confirm camera permissions in macOS privacy settings
-- Confirm no other app is locking the camera
-
-### Missing API key / LLM request failures
-
-- Ensure `.env` exists and includes `ANTHROPIC_API_KEY`
-- Check network connectivity and Anthropic account access
-
-## System Architecture
+## Arquitectura del sistema
 
 ```text
-app.py
-  -> captures camera frame and voice command
-  -> asks Claude for action plan
-  -> transforms plan into receiver payload
-  -> POST /execute to utils/receiver.py
-
-utils/receiver.py (Flask)
-  -> validates and executes timestamped sequence
-  -> sends relay selector command to Arduino firmware
-  -> sends optional EMS/GVS/ET command to stimulator
-
-firmware/human_operator_ems/human_operator_ems.ino
-  -> maps symbolic relay targets to physical output pins
+Comando de voz + imagen de cámara
+              |
+              v
+           app.py
+              |
+              | genera un plan de acciones con IA
+              v
+     utils/receiver.py (Flask)
+              |
+              | envía comandos seriales
+              v
+      Arduino + módulo de relés
+              |
+              v
+       Prototipo experimental
 ```
 
-## Acknowledgments
+## Equipo
 
-Inspired by work from the [Human Computer Integration Lab](https://lab.plopes.org/) at UChicago:
+Proyecto desarrollado por estudiantes del **Colegio Domingo Savio** con fines educativos y de investigación escolar.
 
-- [Full-Hand Electro Tactile Feedback without Obstructing Palmar Side of Hand](https://github.com/humancomputerintegration/BOH-Electro-Tactile)
-- [Generative Muscle Stimulation: Providing Users with Physical Assistance by Constraining Multimodal-AI with Embodied Knowledge](https://arxiv.org/pdf/2505.10648)
+## Créditos y referencias
+
+SINACEM adapta una metodología y una base técnica preexistentes al contexto educativo del Colegio Domingo Savio. El proyecto de referencia y sus autores originales conservan el crédito por su trabajo; SINACEM no afirma haber participado en sus premios, demostraciones ni actividades institucionales.
+
+Referencias académicas relacionadas:
+
+- [Full-Hand Electro-Tactile Feedback without Obstructing the Palmar Side of the Hand](https://github.com/humancomputerintegration/BOH-Electro-Tactile)
+- [Generative Muscle Stimulation: Providing Users with Physical Assistance by Constraining Multimodal AI with Embodied Knowledge](https://arxiv.org/pdf/2505.10648)
 - [Increasing Electrical Muscle Stimulation's Dexterity by Means of Back-of-Hand Actuation](https://lab.plopes.org/published/2021-CHI-BackHandEMS.pdf)
-# SINACEM
+
+---
+
+<p align="center">
+  Hecho con fines educativos por estudiantes del <strong>Colegio Domingo Savio</strong>.
+</p>
