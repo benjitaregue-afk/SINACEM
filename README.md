@@ -1,17 +1,17 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Proyecto%20estudiantil-Colegio%20Domingo%20Savio-1E88E5?style=for-the-badge" alt="Proyecto estudiantil del Colegio Domingo Savio">
-  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10 o superior">
+  <img src="https://img.shields.io/badge/Proyecto%20estudiantil-Colegio%20Domingo%20Savio-1E88E5?style=for-the-badge" alt="Proyecto estudiantil">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+">
   <img src="https://img.shields.io/badge/Hardware-Arduino-00878F?style=for-the-badge&logo=arduino&logoColor=white" alt="Arduino">
 </p>
 
-# SINACEM
+# SINACEM.0
 
-SINACEM es un proyecto educativo de interacción humano-computadora desarrollado por estudiantes del **Colegio Domingo Savio**. El sistema combina comandos de voz, visión en primera persona, inteligencia artificial y estimulación muscular eléctrica (EMS) para generar y ejecutar acciones controladas mediante relés.
+SINACEM.0 es un proyecto educativo de interacción humano-computadora que combina comandos de voz, visión en primera persona, inteligencia artificial y estimulación muscular eléctrica (EMS) para generar y ejecutar acciones controladas mediante relés.
 
 El objetivo del proyecto es explorar, con fines académicos, cómo la inteligencia artificial puede interpretar el entorno y convertir instrucciones humanas en una secuencia de acciones físicas sobre un prototipo experimental.
 
 > [!WARNING]
-> SINACEM es un prototipo educativo y experimental. No es un dispositivo médico ni debe utilizarse sin supervisión responsable.
+> SINACEM.0 es un prototipo educativo y experimental. No es un dispositivo médico ni debe utilizarse sin supervisión responsable.
 
 ## Contenido del repositorio
 
@@ -300,14 +300,6 @@ Comando de voz + imagen de cámara
        Prototipo experimental
 ```
 
-## Equipo
-
-Proyecto desarrollado por estudiantes del **Colegio Domingo Savio** con fines educativos y de investigación escolar.
-
-## Créditos y referencias
-
-SINACEM adapta una metodología y una base técnica preexistentes al contexto educativo del Colegio Domingo Savio. El proyecto de referencia y sus autores originales conservan el crédito por su trabajo; SINACEM no afirma haber participado en sus premios, demostraciones ni actividades institucionales.
-
 Referencias académicas relacionadas:
 
 - [Full-Hand Electro-Tactile Feedback without Obstructing the Palmar Side of the Hand](https://github.com/humancomputerintegration/BOH-Electro-Tactile)
@@ -317,5 +309,5 @@ Referencias académicas relacionadas:
 ---
 
 <p align="center">
-  Hecho con fines educativos por estudiantes del <strong>Colegio Domingo Savio</strong>.
+  Hecho con fines educativos por Benjamin Reguerin, estudiante del <strong>Colegio Domingo Savio</strong>.
 </p>
